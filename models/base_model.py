@@ -3,16 +3,15 @@
 import uuid
 from datetime import datetime
 from sqlalchemy.ext.declarative import declarative_base
-import models
-from sqlalchemy import Column, Integer, String, DateTime
-
+from sqlalchemy import Column, String, DateTime
 Base = declarative_base()
+
 
 class BaseModel:
     """A base class for all hbnb models"""
-    id = Column(String(60), primary_key=True, nullable=False)
-    created_at = Column(datetime.utcnow(), nullable=False)
-    updated_at = Column(datetime.utcnow(), nullable=False)
+    id = Column(String(60), nullable=False, primary_key=True)
+    created_at = Column(DateTime(), nullable=False, default=datetime.utcnow())
+    updated_at = Column(DateTime(), nullable=False, default=datetime.utcnow())
 
     def __init__(self, *args, **kwargs):
         """Instatntiates a new model"""
@@ -49,10 +48,8 @@ class BaseModel:
                           (str(type(self)).split('.')[-1]).split('\'')[0]})
         dictionary['created_at'] = self.created_at.isoformat()
         dictionary['updated_at'] = self.updated_at.isoformat()
-        if '_sa_instance_state' in dictionary.keys():
-            del dictionary['_sa_instance_state']
         return dictionary
 
     def delete(self):
-        """ delete object"""
-        models.storage.delete(self)
+        '''delete the current instance from the storage'''
+        storage.delete(self)
