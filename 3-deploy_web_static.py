@@ -29,6 +29,7 @@ def do_pack():
     else:
         return None
 
+
 def do_deploy(archive_path):
     """Distributes an archive to a web server.
 
@@ -42,7 +43,7 @@ def do_deploy(archive_path):
         return False
     file_name = os.path.basename(archive_path)
     folder_name = file_name.replace('.tgz', "")
-    folder_path = '/data/web_static/releases/{}/'.format(folder_name) 
+    folder_path = '/data/web_static/releases/{}/'.format(folder_name)
     try:
         put(archive_path, '/tmp/')
         run("sudo mkdir -p {}".format(folder_path))
@@ -56,6 +57,7 @@ def do_deploy(archive_path):
         return False
     return True
 
+
 def deploy():
     """creates and distributes an archive to your web servers, using deploy"""
     archive = do_pack()
@@ -63,4 +65,3 @@ def deploy():
         return False
     else:
         return do_deploy(archive)
-
