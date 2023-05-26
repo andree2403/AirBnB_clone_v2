@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-""" a Fabric script (based on the file 1-pack_web_static.py) 
+""" a Fabric script (based on the file 1-pack_web_static.py)
 that distributes an archive to your web servers,
 using the function do_deploy"""
 
@@ -9,9 +9,9 @@ from datetime import datetime
 import os
 
 
-env.hosts = ['52.87.216.236', '100.26.171.103'] 
+env.hosts = ['52.87.216.236', '100.26.171.103']
 env.user = 'ubuntu'  # Replace with your SSH username
-env.key_filename = '/home/vagrant/.ssh/school' 
+env.key_filename = '/home/vagrant/.ssh/school'
 
 
 def do_deploy(archive_path):
