@@ -13,6 +13,14 @@ env.key_filename = '/home/vagrant/.ssh/school'  # Replace with the path to your 
 
 
 def do_deploy(archive_path):
+    """Distributes an archive to a web server.
+
+    Args:
+        archive_path (str): The path of the archive to distribute.
+    Returns:
+        If the file doesn't exist at archive_path or an error occurs - False.
+        Otherwise - True.
+    """
     if not os.path.exists(archive_path):
         return False
     file_name = os.path.basename(archive_path)
