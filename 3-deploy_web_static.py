@@ -3,9 +3,9 @@ from fabric.api import *
 from datetime import datetime
 import os
 
-env.hosts = ['52.87.216.236', '100.26.171.103']  # Replace with the IP address or hostname of your web server
+env.hosts = ['52.87.216.236', '100.26.171.103']
 env.user = 'ubuntu'  # Replace with your SSH username
-env.key_filename = '/home/vagrant/.ssh/school'  # Replace with the path to your private key file
+env.key_filename = '/home/vagrant/.ssh/school'
 
 
 def do_pack():
