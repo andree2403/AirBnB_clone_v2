@@ -35,6 +35,7 @@ def display_text(text='is cool'):
     text = text.replace('_', ' ')
     return f'Python {text}'
 
+
 @app.route('/number/<int:n>', strict_slashes=False)
 def number(n):
     return "{} is a number".format(n)
