@@ -4,7 +4,6 @@
 Your web application must be listening on 0.0.0.0, port 5000
 Routes:
 /: display “Hello HBNB!”
-/hbnb: display "Hello Hbnb"
 You must use the option strict_slashes=False in your route definition"""
 
 from flask import Flask, render_template
@@ -21,6 +20,11 @@ def index():
 def hbnb():
     return "HBNB"
 
+@app.route('/c/<text>', strict_slashes=False)
+def c(text):
+    if "_" in text:
+        text = text.replace("_", " ")
+    return "C {}".format(text)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
