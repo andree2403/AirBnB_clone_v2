@@ -10,10 +10,12 @@ from flask import Flask, render_template
 # Create a flask instamce
 app = Flask(__name__)
 
+
 # Create a route decorator
 @app.route('/', strict_slashes=False)
 def index():
     return "Hello HBNB!"
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
