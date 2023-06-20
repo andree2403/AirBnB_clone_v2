@@ -17,17 +17,21 @@ class DBStorage:
     __engine = None
     __session = None
 
-    def __init__(self):
-        """__init__ method for DBStorage class"""
-        self.__engine = create_engine("mysql+mysqldb://{}:{}@{}/{}"
-                                      .format(getenv("HBNB_MYSQL_USER"),
-                                              getenv("HBNB_MYSQL_PWD"),
-                                              getenv("HBNB_MYSQL_HOST"),
-                                              getenv("HBNB_MYSQL_DB")),
-                                      pool_pre_ping=True)
-        if getenv("HBNB_ENV") == "test":
-            Base.metadata.drop_all(self.__engine)
 
+    def __init__(self):
+        user = getenv("HBNB_MYSQL_USER")
+        passwd = getenv("HBNB_MYSQL_PWD")
+        db = getenv("HBNB_MYSQL_DB")
+        host = getenv("HBNB_MYSQL_HOST")
+        env = getenv("HBNB_ENV")
+
+        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'
+                                      .format(user, passwd, host, db),
+                                      pool_pre_ping=True)
+
+        if env == "test":
+            Base.metadata.drop_all(self.__engine)
+ 
     def all(self, cls=None):
         """Returns a dictionary of models currently in storage"""
         objects = dict()
