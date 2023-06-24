@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<HTML lang="en">
+    <HEAD>
+        <TITLE>HBNB</TITLE>
+    </HEAD>
+    <BODY>
+        {% if state %}
+            <h1>State: {{ state.name }}</h1>
+            <h3>Cities:</h3>
+            <ul>
+                {% for city in state.cities|sort(attribute='name') %}
+                <li>{{ city.id }}: <B>{{ city.name }}</B></li>
+                {% endfor %}
+            </ul>
+        {% elif data is mapping %}
+            <h1>States</h1>
+            <ul>
+                {% for state in data.values()|sort(attribute='name') %}
+                    <li>{{ state.id }}: <b>{{ state.name }}</b></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <h1>Not found!</h1>
+        {% endif %}
+    </BODY>
+</HTML>
